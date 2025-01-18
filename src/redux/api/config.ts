@@ -8,5 +8,5 @@ declare global {
   }
   
   export const config: AppConfig = {
-    apiUrl: process.env.NEXT_PUBLIC_BASE_URL,
+    apiUrl: import.meta.env.VITE_API_URL ?? "",
   } as const;
