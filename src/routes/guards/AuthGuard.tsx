@@ -5,7 +5,7 @@ import { AuthGuardProps } from "./guards.types";
 import * as URL from "../utils/_url";
 import { getLocalStorage } from "../../utils/localStorage";
 import { JSX } from "react/jsx-runtime";
-import App from "../../App";
+import Login from "../../pages/Login";
 
 export const AuthGuard = (props: AuthGuardProps): JSX.Element => {
   const { isPublic = false } = props;
@@ -24,6 +24,5 @@ export const AuthGuard = (props: AuthGuardProps): JSX.Element => {
   if (!token) {
     return <Navigate to={URL.ROUTE_URL_LOGIN} replace />;
   }
-
-  return <App />;
+  return <Login />;
 };

@@ -6,11 +6,8 @@ import { RoutesParse } from "./utils";
 
 import { ROUTE_PARAM_WILDCARD } from "../redux/utils";
 
-// const ForecastPage = lazy(() => import("../pages/Forecast"));
 const NotFoundPage = lazy(() => import("../pages/NotFound"));
 const LoginPage = lazy(() => import("../pages/Login"));
-// const HomePage = lazy(() => import("../pages/Home"));
-// const WorksheetPage = lazy(() => import("../pages/Worksheet"));
 
 export const ROUTES_DEF = [
   {
