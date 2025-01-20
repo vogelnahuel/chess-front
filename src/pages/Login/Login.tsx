@@ -1,41 +1,65 @@
 import React from 'react';
-import { Formik, Form, Field, ErrorMessage } from 'formik';
+import { Formik, Form } from 'formik';
+import * as Yup from 'yup';
+import { Box, Button, TextField, Typography } from '@mui/material';
 
 interface LoginFormProps {
   onSubmit: (values: { email: string; password: string }) => void;
   isSubmitting: boolean;
 }
 
-const LoginForm: React.FC<LoginFormProps> = ({ onSubmit, isSubmitting }) => {
-  const initialValues = { email: '', password: '' };
-
-  const validate = (values: typeof initialValues) => {
-    const errors: Partial<typeof initialValues> = {};
-    if (!values.email) errors.email = 'El email es obligatorio';
-    else if (!/\S+@\S+\.\S+/.test(values.email)) errors.email = 'Email inválido';
-    if (!values.password) errors.password = 'La contraseña es obligatoria';
-    return errors;
-  };
+export const Login: React.FC<LoginFormProps> = ({ onSubmit, isSubmitting }) => {
+  const validationSchema = Yup.object().shape({
+    email: Yup.string().email('Email inválido').required('El email es obligatorio'),
+    password: Yup.string().required('La contraseña es obligatoria'),
+  });
 
   return (
-    <Formik initialValues={initialValues} validate={validate} onSubmit={onSubmit}>
-      <Form className="login-form">
-        <div>
-          <label>Email:</label>
-          <Field type="email" name="email" placeholder="ejemplo@correo.com" />
-          <ErrorMessage name="email" component="div" className="error" />
-        </div>
-        <div>
-          <label>Contraseña:</label>
-          <Field type="password" name="password" placeholder="********" />
-          <ErrorMessage name="password" component="div" className="error" />
-        </div>
-        <button type="submit" disabled={isSubmitting}>
-          {isSubmitting ? 'Cargando...' : 'Iniciar Sesión'}
-        </button>
-      </Form>
+    <Formik
+      initialValues={{ email: '', password: '' }}
+      validationSchema={validationSchema}
+      onSubmit={onSubmit}
+    >
+      {({ handleSubmit, handleChange, values, errors, touched }) => (
+        <Form onSubmit={handleSubmit} className="flex flex-col items-center space-y-4">
+          <Typography variant="h4" className="text-gray-800">
+            Iniciar Sesión
+          </Typography>
+          <Box className="w-80">
+            <TextField
+              label="Email"
+              name="email"
+              value={values.email}
+              onChange={handleChange}
+              error={touched.email && Boolean(errors.email)}
+              helperText={touched.email && errors.email}
+              fullWidth
+            />
+          </Box>
+          <Box className="w-80">
+            <TextField
+              label="Contraseña"
+              name="password"
+              type="password"
+              value={values.password}
+              onChange={handleChange}
+              error={touched.password && Boolean(errors.password)}
+              helperText={touched.password && errors.password}
+              fullWidth
+            />
+          </Box>
+          <Button
+            type="submit"
+            variant="contained"
+            color="primary"
+            className="w-80"
+            disabled={isSubmitting}
+          >
+            {isSubmitting ? 'Cargando...' : 'Iniciar Sesión'}
+          </Button>
+        </Form>
+      )}
     </Formik>
   );
 };
 
-export default LoginForm;

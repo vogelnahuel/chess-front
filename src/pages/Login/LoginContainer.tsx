@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import Login from './Login';
+import { Login } from './Login';
 import { useLoginMutation } from '../../services/login/loginApi';
 import { saveLocalStorage } from '../../utils/localStorage';
 import { setLoginData } from '../../redux/slice/loginSlice';
