@@ -15,6 +15,7 @@ export const Login: React.FC<LoginFormProps> = ({ onSubmit, isSubmitting }) => {
   });
 
   return (
+    <>
     <Formik
       initialValues={{ email: '', password: '' }}
       validationSchema={validationSchema}
@@ -60,6 +61,8 @@ export const Login: React.FC<LoginFormProps> = ({ onSubmit, isSubmitting }) => {
         </Form>
       )}
     </Formik>
+
+</>
   );
 };
 
