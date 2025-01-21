@@ -8,6 +8,8 @@ import { ROUTE_PARAM_WILDCARD } from "../redux/utils";
 
 const NotFoundPage = lazy(() => import("../pages/NotFound"));
 const LoginPage = lazy(() => import("../pages/Login"));
+const ChessPage = lazy(() => import("../pages/Game"));
+
 
 export const ROUTES_DEF = [
   {
@@ -16,12 +18,17 @@ export const ROUTES_DEF = [
     children: [
       // {
       //   path: URL.ROUTE_URL_ROOT,
-      //   element: <Navigate to={URL.ROUTE_URL_HOME} />,
+      //   element: <Navigate to={URL.ROUTE_URL_GAME} />,
       // },
       // { element: <HomePage />, path: URL.ROUTE_URL_HOME },
       // { element: <ForecastPage />, path: URL.ROUTE_URL_FORECAST },
       // { element: <WorksheetPage />, path: URL.ROUTE_URL_WORKSHEET },
     ],
+  },
+  {
+    path: URL.ROUTE_URL_GAME,
+    element: <AuthGuard isPublic />,
+    children: [{ element: <ChessPage />, path: URL.ROUTE_URL_GAME }],
   },
   {
     path: URL.ROUTE_URL_ROOT,
