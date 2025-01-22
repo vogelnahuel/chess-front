@@ -2,23 +2,23 @@
 import React from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-import { GoogleLogin } from 'react-google-login';
+// import { GoogleLogin } from 'react-google-login';
 import { TextField, Button, Box, Typography } from '@mui/material';
 import { useLoginMutation } from '../../services/login/loginApi';
 
 const RegisterPage: React.FC = () => {
   const [login] = useLoginMutation();
 
-  // Manejar inicio de sesión con Google
-  const handleGoogleSuccess = (response: any) => {
-    const profile = response.profileObj;
-    login(profile as any);
-    console.log('Google Login Successful:', profile);
-  };
+  // // Manejar inicio de sesión con Google
+  // const handleGoogleSuccess = (response: any) => {
+  //   const profile = response.profileObj;
+  //   login(profile as any);
+  //   console.log('Google Login Successful:', profile);
+  // };
 
-  const handleGoogleFailure = (error: any) => {
-    console.error('Google Login Failed:', error);
-  };
+  // const handleGoogleFailure = (error: any) => {
+  //   console.error('Google Login Failed:', error);
+  // };
 
   // Configuración de Formik
   const formik = useFormik({
@@ -91,14 +91,6 @@ const RegisterPage: React.FC = () => {
         <Typography variant="body2" className="my-4 text-center">
           o regístrate con Google
         </Typography>
-        <GoogleLogin
-          clientId="TU_CLIENT_ID_DE_GOOGLE"
-          buttonText="Registrarse con Google"
-          onSuccess={handleGoogleSuccess}
-          onFailure={handleGoogleFailure}
-          cookiePolicy={'single_host_origin'}
-          className="w-full"
-        />
       </Box>
     </div>
   );

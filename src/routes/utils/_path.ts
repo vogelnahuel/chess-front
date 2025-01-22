@@ -1,6 +1,10 @@
-export const ROUTE_PATH_HOME = "Home" as const;
 export const ROUTE_PATH_LOGIN = "Login" as const;
+export const ROUTE_PATH_REGISTER = "Register" as const;
+export const ROUTE_PATH_RECOVERY = "Recovery" as const;
+export const ROUTE_PATH_DASHBOARD = "Dashboard" as const;
+export const ROUTE_PATH_CLUB = "Club" as const;
+export const ROUTE_PATH_GAME = "Game" as const;
 export const ROUTE_PATH_404 = "NotFound" as const;
-export const ROUTE_PATH_FORECAST = "Forecast" as const;
-export const ROUTE_PATH_WORKSHEET = "WorkSheet" as const;
-export const ROUTE_PATH_MANAGMENT_MODULE = "ManagmentModule" as const;
+
+
+

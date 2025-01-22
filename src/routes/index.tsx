@@ -22,7 +22,7 @@ export const ROUTES_DEF = [
     children: [
       {
         path: URL.ROUTE_URL_ROOT,
-        element: <Navigate to={URL.ROUTE_URL_GAME} />,
+        element: <Navigate to={URL.ROUTE_URL_ROOT} />,
       },
       { element: <ClubPage />, path: URL.ROUTE_URL_CLUB },
       { element: <DashboardPage />, path: URL.ROUTE_URL_DASHBOARD },
