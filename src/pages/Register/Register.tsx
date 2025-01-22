@@ -5,20 +5,34 @@ import * as Yup from 'yup';
 // import { GoogleLogin } from 'react-google-login';
 import { TextField, Button, Box, Typography } from '@mui/material';
 import { useLoginMutation } from '../../services/login/loginApi';
+import { useGoogleLogin } from 'react-google-login';
+import axios from 'axios';
 
 const RegisterPage: React.FC = () => {
+
+  const onSuccess = async (response: any) => {
+    const { tokenId } = response; // Token de Google
+    try {
+      const result = await axios.post('/api/auth/google-register', { tokenId });
+      alert(result.data.message);
+    } catch (error: any) {
+      console.error(error.response.data.message);
+    }
+  };
+
+  const onFailure = (response: any) => {
+    console.error('Error al registrarse con Google', response);
+  };
+
+  const { signIn } = useGoogleLogin({
+    clientId: import.meta.env.VITE_API_GOOGLE_CLIENT_ID,
+    onSuccess,
+    onFailure,
+    isSignedIn: false,
+  });
+
   const [login] = useLoginMutation();
 
-  // // Manejar inicio de sesión con Google
-  // const handleGoogleSuccess = (response: any) => {
-  //   const profile = response.profileObj;
-  //   login(profile as any);
-  //   console.log('Google Login Successful:', profile);
-  // };
-
-  // const handleGoogleFailure = (error: any) => {
-  //   console.error('Google Login Failed:', error);
-  // };
 
   // Configuración de Formik
   const formik = useFormik({
@@ -88,9 +102,9 @@ const RegisterPage: React.FC = () => {
         >
           Registrarse
         </Button>
-        <Typography variant="body2" className="my-4 text-center">
+        <Button className="my-4 text-center" onClick={signIn}>
           o regístrate con Google
-        </Typography>
+        </Button>
       </Box>
     </div>
   );
