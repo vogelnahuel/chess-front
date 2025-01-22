@@ -35,14 +35,14 @@ const ChessGame: React.FC = () => {
   };
 
   return (
-    <Box className="flex flex-col items-center rounded-lg bg-gray-100 p-4 shadow-md">
+    <Box className="width-full flex items-center justify-center rounded-lg bg-gray-100 p-4 shadow-md">
       <Typography variant="h4" className="mb-4">
         Juego de Ajedrez
       </Typography>
       <Chessboard
         position={game.fen()} // Estado del tablero
         onPieceDrop={onDrop} // Manejar movimientos
-        boardWidth={500} // Tamaño del tablero
+        boardWidth={1800} // Tamaño del tablero
       />
       <Typography variant="h6" className="mt-4">
         {status}
