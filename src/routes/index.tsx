@@ -1,14 +1,18 @@
 import { lazy } from "react";
 import * as URL from "./utils/_url";
 import { AuthGuard } from "./guards";
-import { createBrowserRouter } from "react-router-dom";
+import { createBrowserRouter, Navigate } from "react-router-dom";
 import { RoutesParse } from "./utils";
 
 import { ROUTE_PARAM_WILDCARD } from "../redux/utils";
 
-const NotFoundPage = lazy(() => import("../pages/NotFound"));
-const LoginPage = lazy(() => import("../pages/Login"));
+const ClubPage = lazy(() => import("../pages/Club"));
+const DashboardPage = lazy(() => import("../pages/Dashboard"));
 const ChessPage = lazy(() => import("../pages/Game"));
+const LoginPage = lazy(() => import("../pages/Login"));
+const NotFoundPage = lazy(() => import("../pages/NotFound"));
+const RecoveryPage = lazy(() => import("../pages/Recovery"));
+const RegisterPage = lazy(() => import("../pages/Register"));
 
 
 export const ROUTES_DEF = [
@@ -16,19 +20,25 @@ export const ROUTES_DEF = [
     path: URL.ROUTE_URL_ROOT,
     element: <AuthGuard />,
     children: [
-      // {
-      //   path: URL.ROUTE_URL_ROOT,
-      //   element: <Navigate to={URL.ROUTE_URL_GAME} />,
-      // },
-      // { element: <HomePage />, path: URL.ROUTE_URL_HOME },
-      // { element: <ForecastPage />, path: URL.ROUTE_URL_FORECAST },
-      // { element: <WorksheetPage />, path: URL.ROUTE_URL_WORKSHEET },
+      {
+        path: URL.ROUTE_URL_ROOT,
+        element: <Navigate to={URL.ROUTE_URL_GAME} />,
+      },
+      { element: <ClubPage />, path: URL.ROUTE_URL_CLUB },
+      { element: <DashboardPage />, path: URL.ROUTE_URL_DASHBOARD },
+      { element: <ChessPage />, path: URL.ROUTE_URL_GAME },
+
     ],
   },
   {
-    path: URL.ROUTE_URL_GAME,
+    path: URL.ROUTE_URL_RECOVERY,
     element: <AuthGuard isPublic />,
-    children: [{ element: <ChessPage />, path: URL.ROUTE_URL_GAME }],
+    children: [{ element: <RecoveryPage />, path: URL.ROUTE_URL_RECOVERY }],
+  },
+  {
+    path: URL.ROUTE_URL_REGISTER,
+    element: <AuthGuard isPublic />,
+    children: [{ element: <RegisterPage />, path: URL.ROUTE_URL_REGISTER }],
   },
   {
     path: URL.ROUTE_URL_ROOT,
