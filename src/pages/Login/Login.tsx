@@ -15,7 +15,9 @@ export const Login: React.FC<LoginFormProps> = ({ onSubmit, isSubmitting }) => {
   });
 
   return (
-    <>
+
+    <div style={{ width: '100vw', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+
     <Formik
       initialValues={{ email: '', password: '' }}
       validationSchema={validationSchema}
@@ -23,7 +25,7 @@ export const Login: React.FC<LoginFormProps> = ({ onSubmit, isSubmitting }) => {
     >
       {({ handleSubmit, handleChange, values, errors, touched }) => (
         <Form onSubmit={handleSubmit} className="flex flex-col items-center space-y-4">
-          <Typography variant="h4" className="text-gray-800">
+          <Typography variant="h4" className="text-white-800">
             Iniciar Sesión
           </Typography>
           <Box className="w-80">
@@ -35,6 +37,21 @@ export const Login: React.FC<LoginFormProps> = ({ onSubmit, isSubmitting }) => {
               error={touched.email && Boolean(errors.email)}
               helperText={touched.email && errors.email}
               fullWidth
+              InputProps={{
+                sx: {
+                  color: 'white', // Color del texto
+                },
+              }}
+              InputLabelProps={{
+                sx: {
+                  color: 'white', // Color del label
+                },
+              }}
+              FormHelperTextProps={{
+                sx: {
+                  color: 'white', // Color del texto de ayuda
+                },
+              }}
             />
           </Box>
           <Box className="w-80">
@@ -47,6 +64,21 @@ export const Login: React.FC<LoginFormProps> = ({ onSubmit, isSubmitting }) => {
               error={touched.password && Boolean(errors.password)}
               helperText={touched.password && errors.password}
               fullWidth
+              InputProps={{
+                sx: {
+                  color: 'white', // Color del texto
+                },
+              }}
+              InputLabelProps={{
+                sx: {
+                  color: 'white', // Color del label
+                },
+              }}
+              FormHelperTextProps={{
+                sx: {
+                  color: 'white', // Color del texto de ayuda
+                },
+              }}
             />
           </Box>
           <Button
@@ -62,7 +94,7 @@ export const Login: React.FC<LoginFormProps> = ({ onSubmit, isSubmitting }) => {
       )}
     </Formik>
 
-</>
+</div>
   );
 };
 
