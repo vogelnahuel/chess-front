@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
+ 
 import React from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
@@ -64,7 +64,7 @@ const RegisterPage: React.FC = () => {
         component="form"
         onSubmit={formik.handleSubmit}
       >
-        <Typography variant="h4" className="mb-4 text-center">
+        <Typography variant="h4" className="mb-4 text-center text-gray-800">
           Registro
         </Typography>
         <TextField
@@ -106,11 +106,16 @@ const RegisterPage: React.FC = () => {
           Registrarse
         </Button>
         <button
-      onClick={() => handleLogin()}
-      className="rounded-lg bg-blue-500 px-4 py-2 text-white hover:bg-blue-600"
-    >
-      Iniciar sesión con Google
-    </button>
+          onClick={() => handleLogin()}
+          className="mt-10 flex w-full items-center justify-center rounded-lg border border-gray-300 bg-white px-4 py-2 text-gray-700 shadow-md hover:bg-gray-100"
+        >
+          <img
+            src="https://developers.google.com/identity/images/g-logo.png"
+            alt="Google Logo"
+            className="mr-2 h-5 w-5"
+          />
+          <span>Iniciar sesión con Google</span>
+        </button>
       </Box>
     </div>
   );

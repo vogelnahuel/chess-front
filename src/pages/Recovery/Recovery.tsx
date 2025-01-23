@@ -27,7 +27,7 @@ const ForgotPasswordPage: React.FC = () => {
         component="form"
         onSubmit={formik.handleSubmit}
       >
-        <Typography variant="h4" className="mb-4 text-center">
+        <Typography variant="h4" className="mb-4 text-center text-gray-800">
           Recuperar Contraseña
         </Typography>
 
