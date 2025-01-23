@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { Login } from './Login';
@@ -11,10 +12,10 @@ export const LoginContainer: React.FC = () => {
 
   const handleLogin = async (values: { email: string; password: string }) => {
     try {
-      const response = await login(values).unwrap();
-      saveLocalStorage("token", response.data.access_token);
-      dispatch(setLoginData(response.data));
-      alert('Inicio de sesión exitoso');
+      const response: any = await login(values);
+
+      saveLocalStorage("token", response.data.accessToken);
+      dispatch(setLoginData(response.data.accessToken));
     } catch (error) {
       alert('Error al iniciar sesión: ' + (error as Error).message);
     }

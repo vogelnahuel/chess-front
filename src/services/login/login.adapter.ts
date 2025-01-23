@@ -2,7 +2,7 @@
 
 export const loginAdapter = (response: any) => {
     return {
-      accessToken: response.result.accessToken ?? "",
-      refreshToken: response.result.refreshToken ?? "",
+      accessToken: response.login.accessToken ?? "",
+      refreshToken: response.login.refreshToken ?? "",
     };
   };

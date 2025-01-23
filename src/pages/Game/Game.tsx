@@ -5,9 +5,35 @@ import { Box, Typography } from '@mui/material';
 
 const ChessGame: React.FC = () => {
   const [game, setGame] = useState(new Chess());
-  const [status, setStatus] = useState('Juega el blanco'); // Estado para mostrar información del turno actual
+  const [selectedSquare, setSelectedSquare] = useState<string | null>(null);
+  const [highlightedSquares, setHighlightedSquares] = useState<Record<string, any>>({});
+  const [status, setStatus] = useState('Juega el blanco');
 
-  // Función para manejar los movimientos
+  // Manejar clic en una casilla
+  const handleSquareClick = (square: string) => {
+    const gameCopy = new Chess();
+    gameCopy.load(game.fen());
+
+    if (gameCopy.get(square)) {
+      const moves = gameCopy.moves({ square, verbose: true });
+
+      const highlights: Record<string, any> = {};
+      moves.forEach((move) => {
+        highlights[move.to] = {
+          backgroundColor: 'rgba(152, 161, 154, 0.5)',
+          borderRadius: '50%',
+        };
+      });
+
+      setSelectedSquare(square);
+      setHighlightedSquares(highlights);
+    } else {
+      setSelectedSquare(null);
+      setHighlightedSquares({});
+    }
+  };
+
+  // Manejar movimientos
   const onDrop = (sourceSquare: string, targetSquare: string) => {
     const gameCopy = new Chess();
     gameCopy.load(game.fen());
@@ -24,10 +50,12 @@ const ChessGame: React.FC = () => {
 
     setGame(gameCopy);
     setStatus(getGameStatus(gameCopy));
+    setSelectedSquare(null);
+    setHighlightedSquares({});
     return true; // Movimiento válido
   };
 
-  // Función para obtener el estado del juego
+  // Obtener el estado del juego
   const getGameStatus = (game: Chess) => {
     if (game.isCheckmate()) return '¡Jaque mate!';
     if (game.isDraw()) return 'Empate';
@@ -42,7 +70,9 @@ const ChessGame: React.FC = () => {
       <Chessboard
         position={game.fen()} // Estado del tablero
         onPieceDrop={onDrop} // Manejar movimientos
-        boardWidth={1800} // Tamaño del tablero
+        onSquareClick={handleSquareClick} // Resaltar movimientos válidos
+        customSquareStyles={highlightedSquares} // Estilos personalizados
+        boardWidth={800} // Tamaño del tablero
       />
       <Typography variant="h6" className="mt-4">
         {status}

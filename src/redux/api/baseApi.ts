@@ -7,7 +7,7 @@ import { getLocalStorage } from "../../utils/localStorage";
 
 export const baseApi = createApi({
   baseQuery: fetchBaseQuery({
-    baseUrl: config.apiUrl,
+    baseUrl: config.apiUrl || 'http://localhost:33001/api/v1/chess-gateway',
     prepareHeaders: async (headers) => {
       const token = getLocalStorage("token");
 

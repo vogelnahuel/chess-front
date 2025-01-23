@@ -3,10 +3,12 @@ import type { PayloadAction } from "@reduxjs/toolkit";
 
 export interface ILogin {
   refreshToken: string;
+  accessToken: string;
 }
 
 const initialState: ILogin = {
   refreshToken: '',
+  accessToken: '',
 };
 
 // creating action-reducer slice
@@ -16,10 +18,15 @@ export const LoginSlice = createSlice({
   reducers: {
     logout: (state) => {
       state.refreshToken = '';
+      state.accessToken = '';
     },
-    setLoginData: (state, action: PayloadAction<ILogin>) => {
-      state.refreshToken = action.payload.refreshToken;
-    },
+    setLoginData: (state, action: PayloadAction<string>) => {
+      console.log(action.payload);
+      
+        state.refreshToken = action.payload;
+        state.accessToken = action.payload;
+      
+    }
   },
 });
 
