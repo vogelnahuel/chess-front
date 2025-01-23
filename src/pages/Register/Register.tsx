@@ -5,31 +5,11 @@ import * as Yup from 'yup';
 // import { GoogleLogin } from 'react-google-login';
 import { TextField, Button, Box, Typography } from '@mui/material';
 import { useLoginMutation } from '../../services/login/loginApi';
-import { useGoogleLogin } from 'react-google-login';
 import axios from 'axios';
+import { useGoogleLogin } from '@react-oauth/google';
 
 const RegisterPage: React.FC = () => {
 
-  const onSuccess = async (response: any) => {
-    const { tokenId } = response; // Token de Google
-    try {
-      const result = await axios.post('/api/auth/google-register', { tokenId });
-      alert(result.data.message);
-    } catch (error: any) {
-      console.error(error.response.data.message);
-    }
-  };
-
-  const onFailure = (response: any) => {
-    console.error('Error al registrarse con Google', response);
-  };
-
-  const { signIn } = useGoogleLogin({
-    clientId: import.meta.env.VITE_API_GOOGLE_CLIENT_ID,
-    onSuccess,
-    onFailure,
-    isSignedIn: false,
-  });
 
   const [login] = useLoginMutation();
 
@@ -51,6 +31,29 @@ const RegisterPage: React.FC = () => {
     onSubmit: (values) => {
       console.log('Form Submitted:', values);
       login(values); // Simular registro
+    },
+  });
+
+
+  const handleLogin = useGoogleLogin({
+    onSuccess: async (tokenResponse) => {
+      try {
+        // Obtener información del usuario desde Google
+        const { data } = await axios.get(
+          'https://www.googleapis.com/oauth2/v3/userinfo',
+          {
+            headers: { Authorization: `Bearer ${tokenResponse.access_token}` },
+          }
+        );
+        console.log('Información del usuario:', data);
+
+        alert(`Bienvenido ${data.name}`);
+      } catch (error) {
+        console.error('Error fetching user info:', error);
+      }
+    },
+    onError: () => {
+      console.error('Login Failed');
     },
   });
 
@@ -102,9 +105,12 @@ const RegisterPage: React.FC = () => {
         >
           Registrarse
         </Button>
-        <Button className="my-4 text-center" onClick={signIn}>
-          o regístrate con Google
-        </Button>
+        <button
+      onClick={() => handleLogin()}
+      className="rounded-lg bg-blue-500 px-4 py-2 text-white hover:bg-blue-600"
+    >
+      Iniciar sesión con Google
+    </button>
       </Box>
     </div>
   );
