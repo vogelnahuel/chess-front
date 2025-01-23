@@ -21,7 +21,7 @@ const ForgotPasswordPage: React.FC = () => {
   });
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-gray-100">
+    <div style={{ width: '100vw', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
       <Box
         className="w-full max-w-md rounded-lg bg-white p-6 shadow-md"
         component="form"
