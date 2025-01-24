@@ -63,6 +63,9 @@ const ChessGame: React.FC = () => {
   };
 
   return (
+    <div style={{ width: '100vw', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+
+    
     <Box className="width-full flex items-center justify-center rounded-lg bg-gray-100 p-4 shadow-md">
       <Typography variant="h4" className="mb-4">
         Juego de Ajedrez
@@ -78,6 +81,7 @@ const ChessGame: React.FC = () => {
         {status}
       </Typography>
     </Box>
+    </div>
   );
 };
 

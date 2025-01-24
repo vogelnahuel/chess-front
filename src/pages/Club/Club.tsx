@@ -44,7 +44,7 @@ const ClubPage: React.FC = () => {
   };
 
   return (
-    <div className="p-6">
+    <div style={{ width: '100vw', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
       <Typography variant="h4" className="mb-4">
         Lista de Clubs de Ajedrez
       </Typography>
