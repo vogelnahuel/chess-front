@@ -1,5 +1,5 @@
 import { Box, Button, Grid, Paper, Typography } from '@mui/material';
-import Chessboard from 'chessboardjsx'; // Paquete para tablero de ajedrez
+import { Chessboard } from 'react-chessboard';
 import { useNavigate } from 'react-router-dom';
 
 
@@ -31,7 +31,11 @@ export const Chess = () => {
 
               {/* Tablero de Ajedrez */}
               <Box className="mt-6 flex justify-center">
-                <Chessboard width={400} position="start" />
+                  <Chessboard 
+                  boardWidth={400}
+                   position="start"   
+                   arePiecesDraggable={false} // Desactiva la interacción
+                  />
               </Box>
             </Paper>
         </Grid>

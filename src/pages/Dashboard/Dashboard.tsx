@@ -1,6 +1,5 @@
 import React from 'react';
 import {  Grid } from '@mui/material';
-import { NavBar } from '../../components/NavBar';
 import { News } from '../../components/News';
 import { Profile, ProfileUser } from '../../components/Profile';
 import { Chess } from './Components/Chess';
@@ -11,12 +10,10 @@ const DashboardPage: React.FC = () => {
   const user: ProfileUser = { name: 'John Doe', avatarUrl: '', email: 'john.doe@example.com' }; // Datos de usuario
 
   return (
-    <div style={{ width: '100vw', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-      {/* Menú Lateral */}
-      <NavBar />
+    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'auto', marginLeft: '10px' }}>
 
       {/* Contenido del Dashboard */}
-      <main className="flex-grow bg-gray-100 p-6">
+      <main className="flex-grow bg-gray-100">
         <Grid container spacing={3}>
             {/* Perfil del Usuario */}
             <Profile user={user} isLoggedIn={isLoggedIn} />
@@ -24,6 +21,10 @@ const DashboardPage: React.FC = () => {
             <Chess />
             {/* Noticias */}
             <News />
+            <News />
+            <News />
+
+
         </Grid>
       </main>
     </div>

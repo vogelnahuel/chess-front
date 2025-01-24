@@ -5,10 +5,10 @@ export const NavBar = () => {
     const navigate = useNavigate()
   return (
 
-    <aside className="w-64 bg-gray-800 p-4 text-white">
+    <aside className="position-static  w-40 bg-gray-800 text-white">
     <nav>
       <ul>
-        <li className="mb-4">
+        <li className="mb-4 mt-10">
           <Button fullWidth variant="text" color="inherit" onClick={() => navigate('/club')}>
             Club (Noticias)
           </Button>
