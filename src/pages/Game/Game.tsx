@@ -1,37 +1,17 @@
 import React, { useState } from 'react';
-import { Chessboard } from 'react-chessboard';
 import { Chess } from 'chess.js';
-import { Box, Typography } from '@mui/material';
+import { Grid } from '@mui/material';
+import { ChessBoardWithInfo } from './Components/ChessBoard';
+import { GameSidebar } from './Components/GameSidebar';
+
+
+
+
 
 const ChessGame: React.FC = () => {
   const [game, setGame] = useState(new Chess());
-  const [selectedSquare, setSelectedSquare] = useState<string | null>(null);
-  const [highlightedSquares, setHighlightedSquares] = useState<Record<string, any>>({});
-  const [status, setStatus] = useState('Juega el blanco');
-
-  // Manejar clic en una casilla
-  const handleSquareClick = (square: string) => {
-    const gameCopy = new Chess();
-    gameCopy.load(game.fen());
-
-    if (gameCopy.get(square)) {
-      const moves = gameCopy.moves({ square, verbose: true });
-
-      const highlights: Record<string, any> = {};
-      moves.forEach((move) => {
-        highlights[move.to] = {
-          backgroundColor: 'rgba(152, 161, 154, 0.5)',
-          borderRadius: '50%',
-        };
-      });
-
-      setSelectedSquare(square);
-      setHighlightedSquares(highlights);
-    } else {
-      setSelectedSquare(null);
-      setHighlightedSquares({});
-    }
-  };
+  const [moves, setMoves] = useState<string[]>([]);
+  const [chatMessages, setChatMessages] = useState<string[]>([]);
 
   // Manejar movimientos
   const onDrop = (sourceSquare: string, targetSquare: string) => {
@@ -44,44 +24,30 @@ const ChessGame: React.FC = () => {
       promotion: 'q', // Promoción automática a reina
     });
 
-    if (move === null) {
-      return false; // Movimiento inválido
-    }
+    if (move === null) return false;
 
     setGame(gameCopy);
-    setStatus(getGameStatus(gameCopy));
-    setSelectedSquare(null);
-    setHighlightedSquares({});
-    return true; // Movimiento válido
+    setMoves([...moves, `${move.from}-${move.to}`]);
+    return true;
   };
 
-  // Obtener el estado del juego
-  const getGameStatus = (game: Chess) => {
-    if (game.isCheckmate()) return '¡Jaque mate!';
-    if (game.isDraw()) return 'Empate';
-    return game.turn() === 'w' ? 'Juega el blanco' : 'Juega el negro';
+  // Agregar mensajes al chat
+  const handleSendMessage = (message: string) => {
+    setChatMessages([...chatMessages, message]);
   };
 
   return (
-    <div style={{ width: '100vw', display: 'flex', alignItems: 'center', justifyContent: 'center',height:'100vh' }}>
+    <Grid container spacing={2} style={{ height: '100vh', padding: 10,marginLeft:'5vw',marginRight:'5vw' }}>
+      {/* Columna izquierda: Tablero e información */}
+      <Grid item xs={10}>
+        <ChessBoardWithInfo game={game} />
+      </Grid>
 
-    
-    <Box className="width-full flex items-center justify-center rounded-lg bg-gray-100 p-4 shadow-md">
-      <Typography variant="h4" className="mb-4">
-        Juego de Ajedrez
-      </Typography>
-      <Chessboard
-        position={game.fen()} // Estado del tablero
-        onPieceDrop={onDrop} // Manejar movimientos
-        onSquareClick={handleSquareClick} // Resaltar movimientos válidos
-        customSquareStyles={highlightedSquares} // Estilos personalizados
-        boardWidth={800} // Tamaño del tablero
-      />
-      <Typography variant="h6" className="mt-4">
-        {status}
-      </Typography>
-    </Box>
-    </div>
+      {/* Columna derecha: Historial, chat y botones */}
+      <Grid item xs={2}>
+        <GameSidebar moves={moves} chatMessages={chatMessages} onSendMessage={handleSendMessage} />
+      </Grid>
+    </Grid>
   );
 };
 
