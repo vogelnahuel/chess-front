@@ -7,9 +7,10 @@ import { Link } from 'react-router-dom';
 interface LoginFormProps {
   onSubmit: (values: { email: string; password: string }) => void;
   isSubmitting: boolean;
+  handleLoginMedia: () => void;
 }
 
-export const Login: React.FC<LoginFormProps> = ({ onSubmit, isSubmitting }) => {
+export const Login: React.FC<LoginFormProps> = ({ onSubmit, isSubmitting, handleLoginMedia }) => {
   const validationSchema = Yup.object().shape({
     email: Yup.string().email('Email inválido').required('El email es obligatorio'),
     password: Yup.string().required('La contraseña es obligatoria'),
@@ -97,11 +98,23 @@ export const Login: React.FC<LoginFormProps> = ({ onSubmit, isSubmitting }) => {
             {isSubmitting ? 'Cargando...' : 'Iniciar Sesión'}
           </Button>
           <Link to="/recovery">
-            Olivaste tu contraseña?
+            Olvidaste tu contraseña?
           </Link>
           <Link to="/register">
             Registrarse
           </Link>
+
+          <button
+          onClick={() => handleLoginMedia()}
+          className="mt-10 flex w-full items-center justify-center rounded-lg border border-gray-300 bg-white px-4 py-2 text-gray-700 shadow-md hover:bg-gray-100"
+        >
+          <img
+            src="https://developers.google.com/identity/images/g-logo.png"
+            alt="Google Logo"
+            className="mr-2 h-5 w-5"
+          />
+          <span>Iniciar sesión con Google</span>
+        </button>
         </Form>
       )}
     </Formik>

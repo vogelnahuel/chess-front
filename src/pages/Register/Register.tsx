@@ -4,14 +4,14 @@ import { useFormik } from 'formik';
 import * as Yup from 'yup';
 // import { GoogleLogin } from 'react-google-login';
 import { TextField, Button, Box, Typography } from '@mui/material';
-import { useLoginMutation } from '../../services/login/loginApi';
-import axios from 'axios';
-import { useGoogleLogin } from '@react-oauth/google';
+
+import { useRegisterMutation } from '../../services/register/registerApi';
 
 const RegisterPage: React.FC = () => {
 
 
-  const [login] = useLoginMutation();
+  const [register] = useRegisterMutation();
+
 
 
   // Configuración de Formik
@@ -30,32 +30,14 @@ const RegisterPage: React.FC = () => {
     }),
     onSubmit: (values) => {
       console.log('Form Submitted:', values);
-      login(values); // Simular registro
+      register({
+        email: values.email,
+        password: values.password,
+      }); // Simular registro
     },
   });
 
 
-  const handleLogin = useGoogleLogin({
-    onSuccess: async (tokenResponse) => {
-      try {
-        // Obtener información del usuario desde Google
-        const { data } = await axios.get(
-          'https://www.googleapis.com/oauth2/v3/userinfo',
-          {
-            headers: { Authorization: `Bearer ${tokenResponse.access_token}` },
-          }
-        );
-        console.log('Información del usuario:', data);
-
-        alert(`Bienvenido ${data.name}`);
-      } catch (error) {
-        console.error('Error fetching user info:', error);
-      }
-    },
-    onError: () => {
-      console.error('Login Failed');
-    },
-  });
 
   return (
     <div style={{ width: '100vw', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
@@ -105,17 +87,7 @@ const RegisterPage: React.FC = () => {
         >
           Registrarse
         </Button>
-        <button
-          onClick={() => handleLogin()}
-          className="mt-10 flex w-full items-center justify-center rounded-lg border border-gray-300 bg-white px-4 py-2 text-gray-700 shadow-md hover:bg-gray-100"
-        >
-          <img
-            src="https://developers.google.com/identity/images/g-logo.png"
-            alt="Google Logo"
-            className="mr-2 h-5 w-5"
-          />
-          <span>Iniciar sesión con Google</span>
-        </button>
+
       </Box>
     </div>
   );
