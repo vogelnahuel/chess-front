@@ -19,7 +19,7 @@ export const LoginContainer: React.FC = () => {
       const response: any = await login(values);
 
 
-      if (response.error.status !== 200){
+      if (response.error && response?.error?.status !== 200){
         throw new Error(response.error.data.details);
       }
       saveLocalStorage("token", response?.data?.accessToken);
