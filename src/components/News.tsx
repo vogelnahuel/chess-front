@@ -1,7 +1,13 @@
 import { Grid, Card, CardContent, CardMedia, Typography } from "@mui/material";
-import libro from "../assets/libro.jpeg";
-import libro2 from "../assets/libro2.jpeg";
-import libro3 from "../assets/libro3.jpeg";
+import libro from "../assets/book/libro.jpeg";
+import libro2 from "../assets/book/libro2.jpeg";
+import libro3 from "../assets/book/libro3.jpeg";
+import libro4 from "../assets/book/libro4.jpeg";
+import clasicos from "../assets/book/clasicos.jpeg";
+import tactica from "../assets/book/tactica.jpeg";
+import tal from "../assets/book/tal.jpeg";
+import reti from "../assets/book/reti.jpeg";
+
 
 export const ContentSection = ({ title, items }: { title: string; items: Array<{ title: string; description: string; image?: string }> }) => {
   return (
@@ -43,12 +49,12 @@ export const NewsAndBooks = () => {
     {
       title: "Actualizaciones del Sistema",
       description: "Las nuevas actualizaciones del sistema de bots ya están disponibles.",
-      image: libro3,
+      image: libro2,
     },
     {
       title: "Campeonato Mundial 2025",
       description: "Análisis completo del campeonato mundial de ajedrez 2025.",
-      image: libro,
+      image: libro3,
 
     },
   ];
@@ -57,17 +63,27 @@ export const NewsAndBooks = () => {
     {
       title: "Mi Sistema - Aron Nimzowitsch",
       description: "Un libro esencial para entender los fundamentos del ajedrez posicional.",
-      image: libro,
+      image: libro4,
     },
     {
       title: "Aprende ajedrez con Magnus Carlsen",
       description: "El campeón mundial te enseña estrategias básicas y avanzadas.",
-      image: libro2,
+      image: tactica,
     },
     {
       title: "Estrategia Moderna en Ajedrez",
       description: "Cómo aplicar conceptos estratégicos modernos en tus partidas.",
-      image: libro,
+      image: tal,
+    },
+    {
+      title: "Estrategia Moderna en Ajedrez",
+      description: "Cómo aplicar conceptos estratégicos modernos en tus partidas.",
+      image: clasicos,
+    },
+    {
+      title: "Estrategia Moderna en Ajedrez",
+      description: "Cómo aplicar conceptos estratégicos modernos en tus partidas.",
+      image: reti,
     },
   ];
 
