@@ -10,6 +10,7 @@ const ClubPage = lazy(() => import("../pages/Club"));
 const DashboardPage = lazy(() => import("../pages/Dashboard"));
 const ChessPage = lazy(() => import("../pages/Game"));
 const LoginPage = lazy(() => import("../pages/Login"));
+const ProfilePage = lazy(() => import("../pages/Profile"));
 const NotFoundPage = lazy(() => import("../pages/NotFound"));
 const RecoveryPage = lazy(() => import("../pages/Recovery"));
 const RegisterPage = lazy(() => import("../pages/Register"));
@@ -27,6 +28,7 @@ export const ROUTES_DEF = [
       { element: <ClubPage />, path: URL.ROUTE_URL_CLUB },
       { element: <DashboardPage />, path: URL.ROUTE_URL_DASHBOARD },
       { element: <ChessPage />, path: URL.ROUTE_URL_GAME },
+      { element: <ProfilePage />, path: URL.ROUTE_URL_PROFILE },
 
     ],
   },

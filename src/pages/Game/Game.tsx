@@ -63,7 +63,7 @@ const ChessGame: React.FC = () => {
   };
 
   return (
-    <div style={{ width: '100vw', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+    <div style={{ width: '100vw', display: 'flex', alignItems: 'center', justifyContent: 'center',height:'100vh' }}>
 
     
     <Box className="width-full flex items-center justify-center rounded-lg bg-gray-100 p-4 shadow-md">
