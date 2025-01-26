@@ -9,6 +9,12 @@ import {
   Rating,
 } from "@mui/material";
 import clublogo from "../../assets/clublogo.jpg";
+import clubArgentino from "../../assets/club/clubArgentinoLogo.jpg";
+import torreBlanca from "../../assets/club/torreBlanca.jpeg";
+import najdorf from "../../assets/club/najdorf.jpeg";
+import philidor from "../../assets/club/philidor.jpg";
+import martelli from "../../assets/club/martelli.png";
+
 
 
 interface Club {
@@ -25,73 +31,109 @@ interface Club {
 const clubsData: Club[] = [
   {
     id: 1,
-    name: "Club de Ajedrez Central",
-    description: "Un lugar para aprender y competir en torneos de ajedrez.",
-    image: clublogo, // Cambiar por tu imagen real
+    name: "Club Argentino de Ajedrez",
+    description: "El Templo Máximo del Ajedrez",
+    image: clubArgentino, // Cambiar por tu imagen real
     rating: 4.5,
-    location: "Av. Siempreviva 742, Springfield",
-    phone: "123-456-789",
+    location: "Paraguay 1858, C1121 ABB, Cdad. Autónoma de Buenos Aires",
+    phone: "011 4068-8236",
     reviews: [{ stars: 5, comment: "Excelente lugar para jugar." }],
   },
   {
     id: 2,
-    name: "Ajedrez del Sur",
-    description: "Ideal para principiantes y avanzados.",
-    image: clublogo, // Cambiar por tu imagen real
-    rating: 4.0,
-    location: "Calle Falsa 123, Gotham",
-    phone: "987-654-321",
-    reviews: [{ stars: 4, comment: "Muy buen ambiente." }],
+    name: "Círculo de Ajedrez Torre Blanca",
+    description: "Asociación u organización",
+    image: torreBlanca, // Cambiar por tu imagen real
+    rating: 4.5,
+    location: "Sánchez de Bustamante 587, C1173ABI Cdad. Autónoma de Buenos Aires",
+    phone: "011 4862-3161",
+    reviews: [{ stars: 5, comment: "Un lugar increíble para aprender ajedrez." }],
   },
+
   {
     id: 3,
-    name: "Club Rey y Dama",
-    description: "Perfecto para torneos rápidos.",
-    image: clublogo, // Cambiar por tu imagen real
-    rating: 3.8,
-    location: "Boulevard Chess 10, Metropolis",
-    phone: "111-222-333",
-    reviews: [{ stars: 3, comment: "Necesita más espacio." }],
+    name: "Círculo de Ajedrez Miguel Najdorf",
+    description: "Club en Los Polvorines",
+    image: najdorf, // Cambiar por tu imagen real
+    rating: 4.6,
+    location: "Gral. Mosconi 2488 B1613FSK, B1613FSK Los Polvorines, Provincia de Buenos Aires",
+    phone: "Información no disponible",
+    reviews: [],
   },
   {
     id: 4,
-    name: "Club Rey y Dama",
-    description: "Perfecto para torneos rápidos.",
-    image: clublogo, // Cambiar por tu imagen real
-    rating: 3.8,
-    location: "Boulevard Chess 10, Metropolis",
-    phone: "111-222-333",
-    reviews: [{ stars: 3, comment: "Necesita más espacio." }],
+    name: "Club de Ajedrez Philidor Clases y Torneos",
+    description: "Club de ajedrez en Morón",
+    image: philidor, // Cambiar por tu imagen real
+    rating: 4.8,
+    location: "JDM, 9 de Julio 613, B1708 Morón, Provincia de Buenos Aires",
+    phone: "011 7708-5024",
+    reviews: [],
   },
   {
     id: 5,
-    name: "Club Rey y Dama",
-    description: "Perfecto para torneos rápidos.",
-    image: clublogo, // Cambiar por tu imagen real
-    rating: 3.8,
-    location: "Boulevard Chess 10, Metropolis",
-    phone: "111-222-333",
-    reviews: [{ stars: 3, comment: "Necesita más espacio." }],
+    name: "Ajedrez Martelli",
+    description: "Club de ajedrez",
+    image: martelli, // Cambiar por tu imagen real
+    rating: 4.5, // No especificado, asignado un valor promedio por defecto
+    location: "Francisco N. de Laprida 3837 Timbre 1, B1603 AAO, Provincia de Buenos Aires",
+    phone: "011 4709-7288",
+    reviews: [],
   },
   {
     id: 6,
-    name: "Club Rey y Dama",
-    description: "Perfecto para torneos rápidos.",
+    name: "Teran Chess Academy",
+    description: "Club de ajedrez en Buenos Aires",
     image: clublogo, // Cambiar por tu imagen real
-    rating: 3.8,
-    location: "Boulevard Chess 10, Metropolis",
-    phone: "111-222-333",
-    reviews: [{ stars: 3, comment: "Necesita más espacio." }],
+    rating: 4.8,
+    location: "Av. Cabildo 1548, C1426 Cdad. Autónoma de Buenos Aires",
+    phone: "011 2687-8198",
+    reviews: [],
   },
   {
     id: 7,
-    name: "Club Rey y Dama",
-    description: "Perfecto para torneos rápidos.",
+    name: "Club de Ajedrez La Plata",
+    description: "Club de ajedrez",
     image: clublogo, // Cambiar por tu imagen real
-    rating: 3.8,
-    location: "Boulevard Chess 10, Metropolis",
-    phone: "111-222-333",
-    reviews: [{ stars: 3, comment: "Necesita más espacio." }],
+    rating: 4.5,
+    location: "C. 6 1050, B1904 La Plata, Provincia de Buenos Aires",
+    phone: "Información no disponible",
+    reviews: [],
+  },
+  {
+    id: 8,
+    name: "CÍRCULO DE AJEDREZ DE VILLA BALLESTER",
+    description: "Centro de eventos en Villa Ballester",
+    image: clublogo, // Cambiar por tu imagen real
+    rating: 4.7,
+    location: "Jose Felix Campos Bolivia 4610, B1653HGX Villa Ballester, Provincia de Buenos Aires",
+    phone: "011 4768-0462",
+    reviews: [
+      { stars: 5, comment: "Excelente club !" },
+      { stars: 5, comment: "Muy respetuosos y de ambiente familiar/amigable. Sin lugar a dudas, el mejor." },
+      { stars: 5, comment: "Muy buen ambiente, muy buenos profesores" },
+    ],
+  },
+
+  {
+    id: 9,
+    name: "Club A.y D. Almafuerte Tablada",
+    description: "Club en La Tablada",
+    image: clublogo, // Cambiar por tu imagen real
+    rating: 4.3,
+    location: "Merlo 1280, B1766 La Tablada, Provincia de Buenos Aires",
+    phone: "No tiene información",
+    reviews: [],
+  },
+  {
+    id: 10,
+    name: "Ciudadela Chess Club",
+    description: "Club en Ciudadela",
+    image: clublogo, // Cambiar por tu imagen real
+    rating: 5.0,
+    location: "Cap. Claudio Rosales 4157, B1702 Ciudadela, Provincia de Buenos Aires",
+    phone: "011 2404-9860",
+    reviews: [],
   },
   // Agrega más clubs aquí
 ];
