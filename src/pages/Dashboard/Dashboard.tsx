@@ -28,6 +28,7 @@ const DashboardPage: React.FC = () => {
             }
             {/* Botones de Juego */}
             <Chess />
+            
             {/* Noticias */}
             <NewsAndBooks />
 

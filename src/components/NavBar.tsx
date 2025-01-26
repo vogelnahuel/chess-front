@@ -10,22 +10,22 @@ export const NavBar = () => {
       <ul>
         <li className="mb-4 mt-10">
           <Button fullWidth variant="text" color="inherit" onClick={() => navigate('/club')}>
-            Club (Noticias)
+            Club
           </Button>
         </li>
         <li className="mb-4">
           <Button fullWidth variant="text" color="inherit" onClick={() => navigate('/game')}>
-            Game
+            Juega
           </Button>
         </li>
         <li className="mb-4">
           <Button fullWidth variant="text" color="inherit" onClick={() => navigate('/dashboard')}>
-            Dashboard
+            Inicio
           </Button>
         </li>
         <li className="mb-4">
           <Button fullWidth variant="text" color="inherit" onClick={() => navigate('/profile')}>
-            Profile
+            Perfil
           </Button>
         </li>
       </ul>

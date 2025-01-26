@@ -89,9 +89,12 @@ export const NewsAndBooks = () => {
 
   return (
     <div className="p-6">
-      <ContentSection title="Últimas Noticias" items={news} />
+      <Typography variant="h2" className="mb-4 text-gray-800">
+        Estudia y aprende a jugar ajedrez
+      </Typography>
+      <ContentSection title="" items={news} />
       <div className="mt-8">
-        <ContentSection title="Libros Recomendados" items={books} />
+        <ContentSection title="" items={books} />
       </div>
     </div>
   );
