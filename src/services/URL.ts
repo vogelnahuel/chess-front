@@ -9,5 +9,8 @@ export const QUERY_URL = {
     // CLUB
     clubs: () => `club`,
 
+    // USER
+    userProfile: (id:number) => `user/${id}`,
+
   
   };

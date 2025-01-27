@@ -1,14 +1,18 @@
-import React from 'react';
 import { Card, CardContent, Typography, Box } from '@mui/material';
 import SpeedIcon from '@mui/icons-material/Speed';
 import BoltIcon from '@mui/icons-material/Bolt';
 import FlashOnIcon from '@mui/icons-material/FlashOn';
+import { User } from '../ProfileContainer';
 
-export const UserScores = () => {
+interface UserScoresProps {
+  profileData: User;
+}
+
+export const UserScores = ({profileData}: UserScoresProps) => {
   const scores = [
-    { title: 'Puntuación Rápida', value: 2002, icon: <SpeedIcon color="primary" fontSize="large" /> },
-    { title: 'Puntuación Blitz', value: 1388, icon: <BoltIcon color="secondary" fontSize="large" /> },
-    { title: 'Puntuación Bala', value: 1116, icon: <FlashOnIcon color="warning" fontSize="large" /> },
+    { title: 'Puntuación Rápida', value: profileData.scoreRapid || 1400, icon: <SpeedIcon color="primary" fontSize="large" /> },
+    { title: 'Puntuación Blitz', value: profileData.scoreBlitz || 1400, icon: <BoltIcon color="secondary" fontSize="large" /> },
+    { title: 'Puntuación Bala', value: profileData.scoreBullet || 1400, icon: <FlashOnIcon color="warning" fontSize="large" /> },
   ];
 
   return (
