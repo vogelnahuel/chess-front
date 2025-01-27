@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   Typography,
   Paper,
@@ -9,162 +9,56 @@ import {
   Rating,
 } from "@mui/material";
 import clublogo from "../../assets/clublogo.jpg";
-import clubArgentino from "../../assets/club/clubArgentinoLogo.jpg";
-import torreBlanca from "../../assets/club/torreBlanca.jpeg";
-import najdorf from "../../assets/club/najdorf.jpeg";
-import philidor from "../../assets/club/philidor.jpg";
-import martelli from "../../assets/club/martelli.png";
-
-
 
 interface Club {
-  id: number;
+  id: string;
   name: string;
   description: string;
-  image: string;
-  rating: number; // Promedio de calificaciones
-  location: string; // Dirección para Google Maps
-  phone: string; // Teléfono del club
-  reviews: { stars: number; comment: string }[]; // Calificaciones y comentarios
+  address: string;
+  city: string;
+  province: string;
+  phone: string;
+  email: string;
+  website: string;
+  map_location: string;
+  opening_hours: string;
+  is_federated: boolean;
+  created_at: string; // Puedes usar Date en vez de string si prefieres manipular fechas
+  updated_at: string; // Puedes usar Date en vez de string si prefieres manipular fechas
+  reviews: Review[];
+  tournaments: string[];
 }
 
-const clubsData: Club[] = [
-  {
-    id: 1,
-    name: "Club Argentino de Ajedrez",
-    description: "El Templo Máximo del Ajedrez",
-    image: clubArgentino, // Cambiar por tu imagen real
-    rating: 4.5,
-    location: "Paraguay 1858, C1121 ABB, Cdad. Autónoma de Buenos Aires",
-    phone: "011 4068-8236",
-    reviews: [{ stars: 5, comment: "Excelente lugar para jugar." }],
-  },
-  {
-    id: 2,
-    name: "Círculo de Ajedrez Torre Blanca",
-    description: "Asociación u organización",
-    image: torreBlanca, // Cambiar por tu imagen real
-    rating: 4.5,
-    location: "Sánchez de Bustamante 587, C1173ABI Cdad. Autónoma de Buenos Aires",
-    phone: "011 4862-3161",
-    reviews: [{ stars: 5, comment: "Un lugar increíble para aprender ajedrez." }],
-  },
+interface Review {
+  stars: number;
+  comment: string;
+}
 
-  {
-    id: 3,
-    name: "Círculo de Ajedrez Miguel Najdorf",
-    description: "Club en Los Polvorines",
-    image: najdorf, // Cambiar por tu imagen real
-    rating: 4.6,
-    location: "Gral. Mosconi 2488 B1613FSK, B1613FSK Los Polvorines, Provincia de Buenos Aires",
-    phone: "Información no disponible",
-    reviews: [],
-  },
-  {
-    id: 4,
-    name: "Club de Ajedrez Philidor Clases y Torneos",
-    description: "Club de ajedrez en Morón",
-    image: philidor, // Cambiar por tu imagen real
-    rating: 4.8,
-    location: "JDM, 9 de Julio 613, B1708 Morón, Provincia de Buenos Aires",
-    phone: "011 7708-5024",
-    reviews: [],
-  },
-  {
-    id: 5,
-    name: "Ajedrez Martelli",
-    description: "Club de ajedrez",
-    image: martelli, // Cambiar por tu imagen real
-    rating: 4.5, // No especificado, asignado un valor promedio por defecto
-    location: "Francisco N. de Laprida 3837 Timbre 1, B1603 AAO, Provincia de Buenos Aires",
-    phone: "011 4709-7288",
-    reviews: [],
-  },
-  {
-    id: 6,
-    name: "Teran Chess Academy",
-    description: "Club de ajedrez en Buenos Aires",
-    image: clublogo, // Cambiar por tu imagen real
-    rating: 4.8,
-    location: "Av. Cabildo 1548, C1426 Cdad. Autónoma de Buenos Aires",
-    phone: "011 2687-8198",
-    reviews: [],
-  },
-  {
-    id: 7,
-    name: "Club de Ajedrez La Plata",
-    description: "Club de ajedrez",
-    image: clublogo, // Cambiar por tu imagen real
-    rating: 4.5,
-    location: "C. 6 1050, B1904 La Plata, Provincia de Buenos Aires",
-    phone: "Información no disponible",
-    reviews: [],
-  },
-  {
-    id: 8,
-    name: "CÍRCULO DE AJEDREZ DE VILLA BALLESTER",
-    description: "Centro de eventos en Villa Ballester",
-    image: clublogo, // Cambiar por tu imagen real
-    rating: 4.7,
-    location: "Jose Felix Campos Bolivia 4610, B1653HGX Villa Ballester, Provincia de Buenos Aires",
-    phone: "011 4768-0462",
-    reviews: [
-      { stars: 5, comment: "Excelente club !" },
-      { stars: 5, comment: "Muy respetuosos y de ambiente familiar/amigable. Sin lugar a dudas, el mejor." },
-      { stars: 5, comment: "Muy buen ambiente, muy buenos profesores" },
-    ],
-  },
+interface Props {
+  clubs: Club[];
+  setSelectedClub: React.Dispatch<React.SetStateAction<Club | null>>;
+  selectedClub: Club | null;
+  setStars: React.Dispatch<React.SetStateAction<number>>;
+  stars: number;
+  comment: string;
+  setComment: React.Dispatch<React.SetStateAction<string>>;
+  handleAddReview: (clubId: string) => void;
+}
 
-  {
-    id: 9,
-    name: "Club A.y D. Almafuerte Tablada",
-    description: "Club en La Tablada",
-    image: clublogo, // Cambiar por tu imagen real
-    rating: 4.3,
-    location: "Merlo 1280, B1766 La Tablada, Provincia de Buenos Aires",
-    phone: "No tiene información",
-    reviews: [],
-  },
-  {
-    id: 10,
-    name: "Ciudadela Chess Club",
-    description: "Club en Ciudadela",
-    image: clublogo, // Cambiar por tu imagen real
-    rating: 5.0,
-    location: "Cap. Claudio Rosales 4157, B1702 Ciudadela, Provincia de Buenos Aires",
-    phone: "011 2404-9860",
-    reviews: [],
-  },
-  // Agrega más clubs aquí
-];
 
-const ClubGrid: React.FC = () => {
-  const [clubs, setClubs] = useState<Club[]>(clubsData);
-  const [selectedClub, setSelectedClub] = useState<Club | null>(null); // Club seleccionado
-  const [comment, setComment] = useState<string>(""); // Comentario
-  const [stars, setStars] = useState<number>(0); // Calificación
+const ClubGrid: React.FC<Props> = (
+  {
+   clubs,
+   setSelectedClub,
+   selectedClub,
+   setStars,
+   stars,
+   comment,
+   setComment,
+   handleAddReview
+  }: Props 
+) => {
 
-  const handleAddReview = (clubId: number) => {
-    if (!comment || stars === 0) return;
-    setClubs((prev) =>
-      prev.map((club) =>
-        club.id === clubId
-          ? {
-              ...club,
-              reviews: [...club.reviews, { stars, comment }],
-              rating:
-                [...club.reviews, { stars, comment }].reduce(
-                  (acc, r) => acc + r.stars,
-                  0
-                ) / [...club.reviews, { stars, comment }].length,
-            }
-          : club
-      )
-    );
-    setComment("");
-    setStars(0);
-    setSelectedClub(null);
-  };
 
   return (
     <Box sx={{ padding: 4 }}>
@@ -180,7 +74,7 @@ const ClubGrid: React.FC = () => {
           gap: 4, // Espaciado entre cards
         }}
       >
-        {clubs.map((club) => (
+        {clubs && clubs.length > 0 && clubs?.map((club) => (
           <Paper
             key={club.id}
             sx={{
@@ -191,7 +85,7 @@ const ClubGrid: React.FC = () => {
             }}
           >
             <img
-              src={club.image}
+              src={clublogo}
               alt={club.name}
               style={{
                 width: "100%",
@@ -207,12 +101,12 @@ const ClubGrid: React.FC = () => {
               {club.description}
             </Typography>
             <Typography variant="body2" className="mt-1 text-gray-600">
-              📍 {club.location}
+              📍 {club.address || clublogo}
             </Typography>
             <Typography variant="body2" className="mt-1 text-gray-600">
               📞 {club.phone}
             </Typography>
-            <Rating value={club.rating} readOnly className="mt-2" />
+            <Rating value={5} readOnly className="mt-2" />
 
             <Button
               variant="text"
@@ -221,7 +115,7 @@ const ClubGrid: React.FC = () => {
               onClick={() =>
                 window.open(
                   `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
-                    club.location
+                    club.address
                   )}`,
                   "_blank"
                 )

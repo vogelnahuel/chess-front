@@ -20,9 +20,6 @@ export const AuthGuard = (props: AuthGuardProps): JSX.Element => {
     return <Navigate to={URL.ROUTE_URL_LOGIN} replace />;
   }
 
-  console.log("token", token);
-  console.log("isPublic", isPublic);
-
   // Si hay token y la ruta es privada, renderizamos las rutas hijas
   return <App />;
 };

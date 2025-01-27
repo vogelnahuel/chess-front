@@ -6,5 +6,8 @@ export const QUERY_URL = {
     register: () => `user/register`,
     registerMedia: () => `user/register-media`,
 
+    // CLUB
+    clubs: () => `club`,
+
   
   };

@@ -1,2 +1,2 @@
-import  Club  from "./Club";
-export default Club;
+import  { ClubContainer }  from "./ClubContainer";
+export default ClubContainer;
