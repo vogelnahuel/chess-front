@@ -1,4 +1,3 @@
-import React from 'react';
 import { Avatar, Box, Button, Typography } from '@mui/material';
 
 export const UserProfile = () => {
@@ -11,7 +10,7 @@ export const UserProfile = () => {
           sx={{ width: 96, height: 96 }}
         />
         <Box>
-          <Typography variant="h5" fontWeight="bold">
+          <Typography variant="h5" fontWeight="bold" color='black'>
             i_am_stock_fish
           </Typography>
           <Typography variant="body2" color="text.secondary">

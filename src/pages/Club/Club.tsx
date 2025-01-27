@@ -160,7 +160,7 @@ const ClubGrid: React.FC<Props> = (
             </Typography>
             <Rating
               value={stars}
-              onChange={(e, value) => setStars(value || 0)}
+              onChange={(_, value) => setStars(value || 0)}
               className="mt-4"
             />
             <TextField
