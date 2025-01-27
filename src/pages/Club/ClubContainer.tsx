@@ -17,6 +17,7 @@ interface Club {
   is_federated: boolean;
   created_at: string; // Puedes usar Date en vez de string si prefieres manipular fechas
   updated_at: string; // Puedes usar Date en vez de string si prefieres manipular fechas
+  logo: string; // en base 64
   reviews: Review[];
   tournaments: string[];
 }
