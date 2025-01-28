@@ -9,26 +9,24 @@ export interface User {
   email: string;
   password: string;
   refresh_token: string;
-  permissions: string[]; // Si los permisos tienen una estructura específica, puedes reemplazar `string` por la interfaz correspondiente.
+  permissions: string[]; 
   address: string;
   role: string | null;
   is_active: boolean;
-  lastActivity: string; // Puedes usar `Date` si procesas esta fecha.
+  lastActivity: string; 
   location_s3: string;
   scoreBlitz: number;
   scoreBullet: number;
   scoreRapid: number;
   verification_code: string;
-  expire_verification_code: string; // También puedes usar `Date` si es un timestamp.
+  expire_verification_code: string; 
 }
 
 
 
 export const ProfileContainer = () => {
-    // const { data: clubsData, isLoading } = useClubsQuery(); // Usar el hook para obtener los clubs
     const { id } = useParams<{ id: string }>();
 
-      // Usar el hook para obtener los datos del perfil
   const { data: profileData, isLoading, isError }  = useProfileQuery(id);
 
   if (isLoading) {

@@ -33,21 +33,19 @@ export const LoginContainer: React.FC = () => {
       navigate("/dashboard")
 
     } catch (error) {
-      console.log(error);
       
       const errorMessage = (error as Error)
 
-      // Mostrar notificación de error
       enqueueSnackbar(`Error al iniciar sesión: ${errorMessage}`, {
-        variant: 'error', // Variantes: 'default', 'error', 'success', 'warning', 'info'
-      });    }
+        variant: 'error', 
+      });    
+    }
   };
 
 
   const handleLoginMedia = useGoogleLogin({
     onSuccess: async (tokenResponse) => {
       try {
-        // Obtener información del usuario desde Google
         const { data } = await axios.get(
           'https://www.googleapis.com/oauth2/v3/userinfo',
           {

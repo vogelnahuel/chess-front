@@ -32,7 +32,7 @@ export const UserProfile = ({profileData}: UserProfileProps) => {
         Estado: Muestra tu distintivo
       </Typography>
       <Typography variant="body2" color="text.secondary">
-        {profileData.lastActivity}
+        {profileData.lastActivity || new Date().toLocaleDateString()}
       </Typography>
     </Box>
   );
